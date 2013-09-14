@@ -1,0 +1,23 @@
+{
+  "name": "mniam-store",
+  "version": "0.0.0",
+  "description": "session store for connect middleware using mniam mongo access layer",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:code42day/mniam-store.git"
+  },
+  "keywords": [
+    "mniam",
+    "connect",
+    "session"
+  ],
+  "author": "Damian Krzeminski <pirxpilot@code42day.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/code42day/mniam-store/issues"
+  }
+}
