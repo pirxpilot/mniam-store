@@ -19,5 +19,12 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/code42day/mniam-store/issues"
+  },
+  "dependencies": {
+    "debug": "~0"
+  },
+  "devDependencies": {
+    "mocha": "~1",
+    "jshint": "~2"
   }
 }
