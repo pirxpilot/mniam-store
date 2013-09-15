@@ -1,3 +1,6 @@
+[![Dependency Status](https://gemnasium.com/code42day/mniam-store.png)](https://gemnasium.com/code42day/mniam-store)
+[![NPM version](https://badge.fury.io/js/mniam-store.png)](http://badge.fury.io/js/mniam-store)
+
 # Mniam Store
 
 mniam-store is a connect session store backed by [mongodb][]
@@ -39,7 +42,7 @@ connect().use(connect.session({
 If you use express you may do the following:
 
 ```javascript
-var RedisStore = require('connect-redis')(express);
+var MniamStore = require('connect-redis')(express);
 ```
 
 # License
