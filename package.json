@@ -13,7 +13,8 @@
   "keywords": [
     "mniam",
     "connect",
-    "session"
+    "session",
+    "mongodb"
   ],
   "author": "Damian Krzeminski <pirxpilot@code42day.com>",
   "license": "MIT",
@@ -25,6 +26,9 @@
   },
   "devDependencies": {
     "mocha": "~1",
-    "jshint": "~2"
+    "jshint": "~2",
+    "should": "~1",
+    "connect": "~2",
+    "mniam": "~0"
   }
 }

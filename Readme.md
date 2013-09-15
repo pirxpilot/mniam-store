@@ -1,3 +1,4 @@
+[![Build Status](https://secure.travis-ci.org/code42day/mniam-store.png)](http://travis-ci.org/code42day/mniam-store)
 [![Dependency Status](https://gemnasium.com/code42day/mniam-store.png)](https://gemnasium.com/code42day/mniam-store)
 [![NPM version](https://badge.fury.io/js/mniam-store.png)](http://badge.fury.io/js/mniam-store)
 
