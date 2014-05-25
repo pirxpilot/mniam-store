@@ -1,6 +1,6 @@
-[![Build Status](https://secure.travis-ci.org/code42day/mniam-store.png)](http://travis-ci.org/code42day/mniam-store)
-[![Dependency Status](https://gemnasium.com/code42day/mniam-store.png)](https://gemnasium.com/code42day/mniam-store)
-[![NPM version](https://badge.fury.io/js/mniam-store.png)](http://badge.fury.io/js/mniam-store)
+[![Build Status](https://img.shields.io/travis/code42day/mniam-store.svg)](http://travis-ci.org/code42day/mniam-store)
+[![Dependency Status](https://img.shields.io/gemnasium/code42day/mniam-store.svg)](https://gemnasium.com/code42day/mniam-store)
+[![NPM version](https://img.shields.io/npm/v/mniam-store.svg)](http://badge.fury.io/js/mniam-store)
 
 # Mniam Store
 
