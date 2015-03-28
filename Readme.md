@@ -38,6 +38,24 @@ connect().use(connect.session({
 }))
 ```
 
+## Upgrading from 0.x
+
+Since `mniam-store` is using [mongo TTL index](http://docs.mongodb.org/manual/core/index-ttl/) sessions created with
+previous versions will not expire automatically. We need to time stamp old sessions after the upgrade:
+
+````javascript
+db.sessions.update(
+  {_mod: {$exists:0}},
+  {$currentDate:{_mod:true}},
+  {multi:true}
+)
+````
+
+And drop old index in `expires`:
+
+````javascript
+db.sessions.dropIndex({expires:1})
+````
 
 # License
 
