@@ -22,13 +22,13 @@
     "url": "https://github.com/code42day/mniam-store/issues"
   },
   "dependencies": {
-    "debug": "~0"
+    "debug": "~2"
   },
   "devDependencies": {
-    "mocha": "~1",
+    "mocha": "~2",
     "jshint": "~2",
-    "should": "~1",
+    "should": "~5",
     "connect": "~2",
-    "mniam": "~0"
+    "mniam": "~1"
   }
 }
