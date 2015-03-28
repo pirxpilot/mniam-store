@@ -36,8 +36,8 @@ describe('MniamStore', function () {
         should.not.exist(err);
         should.exist(sess);
 
-        sess.should.have.property('expires');
-        sess.expires.should.be.above(Date.now());
+        sess.should.have.property('_mod');
+        sess._mod.should.be.below(new Date());
 
         sess.should.have.property('session');
         JSON.parse(sess.session).should.eql(value);
@@ -51,8 +51,7 @@ describe('MniamStore', function () {
 
     sessions.save({
       _id: key,
-      session: JSON.stringify(value),
-      expires: Date.now() + 2000
+      session: value,
     }, function(err) {
       should.not.exist(err);
 
@@ -89,5 +88,4 @@ describe('MniamStore', function () {
       });
     });
   });
-
 });

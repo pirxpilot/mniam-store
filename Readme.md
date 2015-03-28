@@ -17,9 +17,7 @@ seamless connection sharing if your app is using DB
 
 - `db` existing database created with mniam (can be shared with other parst of the app)
 - `collection` name of the mongo collection to keep sessions in (default: sessions)
-- `reapInterval` (millis) how often expired sessions should be purged - set to -1 to stop purging
-- `ttl` - (millis) specifies how long sessions should stay in DB - defaults to session cookie
-  `maxAge`, and if that is not specified either -- to 1 day
+- `maxAge` - (seconds) specifies how long sessions should stay in DB - should be set-up to a value slightly larger than `cookie.maxAge` - defaults to 1 day
 
 ## Usage
 
@@ -40,11 +38,6 @@ connect().use(connect.session({
 }))
 ```
 
-If you use express you may do the following:
-
-```javascript
-var MniamStore = require('connect-redis')(express);
-```
 
 # License
 
