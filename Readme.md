@@ -4,10 +4,12 @@
 
 # Mniam Store
 
-mniam-store is a connect session store backed by [mongodb][]
+mniam-store is a connect session store backed by [mongodb]
 
-[mniam][] is used to access as a access layer which means no async on init, simple configuration and
+[mniam] is used to access as a access layer which means no async on init, simple configuration and
 seamless connection sharing if your app is using DB
+
+mniam-store is compatible with [express-session] middleware
 
 ## Installation
 
@@ -65,4 +67,5 @@ MIT
 [mongodb]: http://www.mongodb.org
 [connect]: http://www.senchalabs.org/connect
 [session]: http://www.senchalabs.org/connect/session
-[mniam]: http://npmjs.org/package/mniam
+[mniam]: https://www.npmjs.com/package/mniam
+[express-session]: https://www.npmjs.com/express-session
