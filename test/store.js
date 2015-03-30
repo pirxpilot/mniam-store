@@ -46,6 +46,33 @@ describe('MniamStore', function () {
     });
   });
 
+  it('should update timestamp when touched', function (done) {
+    var store = new MniamStore({ db:db });
+    var modOrig;
+
+    store.set(key, value, function(err) {
+      should.not.exist(err);
+
+      sessions.findOne({ _id: key }, function(err, sess) {
+        should.not.exist(err);
+        should.exist(sess);
+
+        modOrig = sess._mod;
+
+        store.touch(key, null, function(err) {
+          should.not.exist(err);
+
+          sessions.findOne({ _id: key }, function(err, sess) {
+            should.exist(sess);
+
+            modOrig.should.be.below(sess._mod);
+            done(err);
+          });
+        });
+      });
+    });
+  });
+
   it('should get session data', function (done) {
     var store = new MniamStore({ db:db });
 
