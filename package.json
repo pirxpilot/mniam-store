@@ -29,6 +29,6 @@
     "jshint": "~2",
     "mniam": "~1",
     "mocha": "~2",
-    "should": "~5"
+    "should": "~6"
   }
 }
