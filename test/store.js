@@ -1,6 +1,6 @@
 var should = require('should');
-var connect = require('connect');
-var MniamStore = require('../lib/store')(connect);
+var sessionMiddleware = require('express-session');
+var MniamStore = require('../lib/store')(sessionMiddleware);
 
 var db = require('mniam').db('mongodb://localhost/mniam-store-test');
 var sessions = db.collection({
@@ -12,10 +12,8 @@ var sessions = db.collection({
 describe('MniamStore', function () {
   var key = 'abcd-efgh';
   var value = {
-    cookie: {
-      maxAge: 2000
-    },
-    user: 'Bob'
+    user: 'Bob',
+    cookie: new sessionMiddleware.Cookie()
   };
 
   beforeEach(function(done) {
@@ -40,7 +38,8 @@ describe('MniamStore', function () {
         sess._mod.should.be.below(new Date());
 
         sess.should.have.property('session');
-        JSON.parse(sess.session).should.eql(value);
+        sess.session.should.have.property('user', 'Bob');
+
         done();
       });
     });
@@ -82,11 +81,12 @@ describe('MniamStore', function () {
     }, function(err) {
       should.not.exist(err);
 
-      store.get(key, function (err, sess) {
+      store.get(key, function (err, session) {
         should.not.exist(err);
 
-        should.exist(sess);
-        sess.should.eql(value);
+        should.exist(session);
+        session.should.have.property('user', 'Bob');
+        session.should.have.property('cookie');
         done();
       });
     });
