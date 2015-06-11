@@ -1,4 +1,11 @@
 
+1.2.0 / 2015-06-11
+==================
+
+ * update should ~5 -> ~6
+ * save session as an object and not as a serialized JSON
+ * replace connect with express-session in tests
+
 1.1.0 / 2015-03-30
 ==================
 
