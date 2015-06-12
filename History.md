@@ -1,4 +1,9 @@
 
+1.2.1 / 2015-06-12
+==================
+
+ * fix: ignore touch performent on an invalid session
+
 1.2.0 / 2015-06-11
 ==================
 
