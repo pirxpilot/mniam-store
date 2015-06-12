@@ -72,6 +72,18 @@ describe('MniamStore', function () {
     });
   });
 
+  it('should ignore touch to non-existing sessions', function (done) {
+    var store = new MniamStore({ db:db });
+
+    store.touch(key, null, function(err) {
+      should.not.exist(err);
+      sessions.findOne({ _id: key }, function(err, sess) {
+        should.not.exist(sess);
+        done();
+      });
+    });
+  });
+
   it('should get session data', function (done) {
     var store = new MniamStore({ db:db });
 
