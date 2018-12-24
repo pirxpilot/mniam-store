@@ -17,7 +17,7 @@ describe('MniamStore', function () {
   };
 
   beforeEach(function(done) {
-    sessions.remove({}, done);
+    sessions.removeMany({}, done);
   });
 
   after(function() {
@@ -87,7 +87,7 @@ describe('MniamStore', function () {
   it('should get session data', function (done) {
     const store = new MniamStore({ db });
 
-    sessions.save({
+    sessions.insertOne({
       _id: key,
       session: value,
     }, function(err) {
