@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - 0.10
-  - iojs
+  - node
+  - lts/*
 services:
   - mongodb
 before_install:
