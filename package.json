@@ -27,5 +27,9 @@
     "mniam": "~1",
     "mocha": "~2",
     "should": "~6"
-  }
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ]
 }
