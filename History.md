@@ -1,4 +1,11 @@
 
+2.0.0 / 2018-12-25
+==================
+
+ * upgrade to newer mniam version
+ * add store.close() method
+ * rewrite in ES6
+
 1.2.2 / 2017-02-22
 ==================
 
