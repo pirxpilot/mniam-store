@@ -25,8 +25,8 @@
     "express-session": "^1.11.2",
     "jshint": "~2",
     "mniam": "~2",
-    "mocha": "~2",
-    "should": "~6"
+    "mocha": "~5",
+    "should": "~13"
   },
   "files": [
     "index.js",
