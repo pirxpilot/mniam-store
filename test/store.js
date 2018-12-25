@@ -40,6 +40,7 @@ describe('MniamStore', function () {
         sess.should.have.property('session');
         sess.session.should.have.property('user', 'Bob');
 
+        store.close();
         done();
       });
     });
@@ -65,6 +66,8 @@ describe('MniamStore', function () {
             should.exist(sess);
 
             modOrig.should.be.below(sess._mod);
+
+            store.close();
             done(err);
           });
         });
@@ -79,6 +82,7 @@ describe('MniamStore', function () {
       should.not.exist(err);
       sessions.findOne({ _id: key }, function(err, sess) {
         should.not.exist(sess);
+        store.close();
         done();
       });
     });
@@ -99,6 +103,7 @@ describe('MniamStore', function () {
         should.exist(session);
         session.should.have.property('user', 'Bob');
         session.should.have.property('cookie');
+        store.close();
         done();
       });
     });
@@ -120,6 +125,7 @@ describe('MniamStore', function () {
           sessions.find({}, null, null, function(err, all) {
             should.not.exist(err);
             all.should.have.length(0);
+            store.close();
 
             done();
           });
