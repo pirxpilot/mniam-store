@@ -19,7 +19,7 @@
   "author": "Damian Krzeminski <pirxpilot@furkot.com>",
   "license": "MIT",
   "dependencies": {
-    "debug": "~2"
+    "debug": "~4"
   },
   "devDependencies": {
     "express-session": "^1.11.2",
