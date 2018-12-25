@@ -1,23 +1,23 @@
-var should = require('should');
-var sessionMiddleware = require('express-session');
-var MniamStore = require('../lib/store')(sessionMiddleware);
+const should = require('should');
+const sessionMiddleware = require('express-session');
+const MniamStore = require('../lib/store')(sessionMiddleware);
 
-var db = require('mniam').db('mongodb://localhost/mniam-store-test');
-var sessions = db.collection({
+const db = require('mniam').db('mongodb://localhost/mniam-store-test');
+const sessions = db.collection({
   name: 'sessions'
 });
 
 /*global describe, it, after, beforeEach */
 
 describe('MniamStore', function () {
-  var key = 'abcd-efgh';
-  var value = {
+  const key = 'abcd-efgh';
+  const value = {
     user: 'Bob',
     cookie: new sessionMiddleware.Cookie()
   };
 
   beforeEach(function(done) {
-    sessions.remove({}, done);
+    sessions.removeMany({}, done);
   });
 
   after(function() {
@@ -25,7 +25,7 @@ describe('MniamStore', function () {
   });
 
   it('should set session data', function (done) {
-    var store = new MniamStore({ db:db });
+    const store = new MniamStore({ db });
 
     store.set(key, value, function(err) {
       should.not.exist(err);
@@ -40,14 +40,15 @@ describe('MniamStore', function () {
         sess.should.have.property('session');
         sess.session.should.have.property('user', 'Bob');
 
+        store.close();
         done();
       });
     });
   });
 
   it('should update timestamp when touched', function (done) {
-    var store = new MniamStore({ db:db });
-    var modOrig;
+    const store = new MniamStore({ db });
+    let modOrig;
 
     store.set(key, value, function(err) {
       should.not.exist(err);
@@ -65,6 +66,8 @@ describe('MniamStore', function () {
             should.exist(sess);
 
             modOrig.should.be.below(sess._mod);
+
+            store.close();
             done(err);
           });
         });
@@ -73,21 +76,22 @@ describe('MniamStore', function () {
   });
 
   it('should ignore touch to non-existing sessions', function (done) {
-    var store = new MniamStore({ db:db });
+    const store = new MniamStore({ db });
 
     store.touch(key, null, function(err) {
       should.not.exist(err);
       sessions.findOne({ _id: key }, function(err, sess) {
         should.not.exist(sess);
+        store.close();
         done();
       });
     });
   });
 
   it('should get session data', function (done) {
-    var store = new MniamStore({ db:db });
+    const store = new MniamStore({ db });
 
-    sessions.save({
+    sessions.insertOne({
       _id: key,
       session: value,
     }, function(err) {
@@ -99,13 +103,14 @@ describe('MniamStore', function () {
         should.exist(session);
         session.should.have.property('user', 'Bob');
         session.should.have.property('cookie');
+        store.close();
         done();
       });
     });
   });
 
   it('should destroy session data', function (done) {
-    var store = new MniamStore({ db:db });
+    const store = new MniamStore({ db });
 
     store.set(key, value, function(err) {
       should.not.exist(err);
@@ -120,6 +125,7 @@ describe('MniamStore', function () {
           sessions.find({}, null, null, function(err, all) {
             should.not.exist(err);
             all.should.have.length(0);
+            store.close();
 
             done();
           });
