@@ -1,6 +1,7 @@
-[![Build Status](https://img.shields.io/travis/pirxpilot/mniam-store.svg)](http://travis-ci.org/pirxpilot/mniam-store)
-[![Dependency Status](https://img.shields.io/gemnasium/pirxpilot/mniam-store.svg)](https://gemnasium.com/pirxpilot/mniam-store)
-[![NPM version](https://img.shields.io/npm/v/mniam-store.svg)](http://badge.fury.io/js/mniam-store)
+[![NPM version][npm-image]][npm-url]
+[![Build Status][build-image]][build-url]
+[![Dependency Status][deps-image]][deps-url]
+[![Dev Dependency Status][deps-dev-image]][deps-dev-url]
 
 # Mniam Store
 
@@ -37,7 +38,7 @@ connect().use(connect.session({
   store: new MniamStore({
     db: db
   })
-}))
+}));
 ```
 
 ## Upgrading from 0.x
@@ -45,19 +46,19 @@ connect().use(connect.session({
 Since `mniam-store` is using [mongo TTL index](http://docs.mongodb.org/manual/core/index-ttl/) sessions created with
 previous versions will not expire automatically. We need to time stamp old sessions after the upgrade:
 
-````javascript
+```javascript
 db.sessions.update(
   {_mod: {$exists:0}},
   {$currentDate:{_mod:true}},
   {multi:true}
-)
-````
+);
+```
 
 And drop old index in `expires`:
 
-````javascript
-db.sessions.dropIndex({expires:1})
-````
+```javascript
+db.sessions.dropIndex({expires:1});
+```
 
 # License
 
@@ -69,3 +70,15 @@ MIT
 [session]: http://www.senchalabs.org/connect/session
 [mniam]: https://www.npmjs.com/package/mniam
 [express-session]: https://www.npmjs.com/express-session
+
+[npm-image]: https://img.shields.io/npm/v/mniam-store.svg
+[npm-url]: https://npmjs.org/package/mniam-store
+
+[build-url]: https://travis-ci.org/pirxpilot/mniam-store
+[build-image]: https://img.shields.io/travis/pirxpilot/mniam-store.svg
+
+[deps-image]: https://img.shields.io/david/pirxpilot/mniam-store.svg
+[deps-url]: https://david-dm.org/pirxpilot/mniam-store
+
+[deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/mniam-store.svg
+[deps-dev-url]: https://david-dm.org/pirxpilot/mniam-store?type=dev
