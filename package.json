@@ -18,10 +18,13 @@
   "dependencies": {
     "debug": "~4"
   },
+  "peerDependencies": {
+    "mniam": "~3"
+  },
   "devDependencies": {
     "express-session": "^1.11.2",
     "jshint": "~2",
-    "mniam": "~2",
+    "mniam": "~3",
     "mocha": "~10",
     "should": "~13"
   },
