@@ -22,7 +22,7 @@
     "express-session": "^1.11.2",
     "jshint": "~2",
     "mniam": "~2",
-    "mocha": "~5",
+    "mocha": "~10",
     "should": "~13"
   },
   "files": [
