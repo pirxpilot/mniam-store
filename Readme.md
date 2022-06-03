@@ -1,7 +1,6 @@
 [![NPM version][npm-image]][npm-url]
 [![Build Status][build-image]][build-url]
 [![Dependency Status][deps-image]][deps-url]
-[![Dev Dependency Status][deps-dev-image]][deps-dev-url]
 
 # Mniam Store
 
@@ -71,14 +70,14 @@ MIT
 [mniam]: https://www.npmjs.com/package/mniam
 [express-session]: https://www.npmjs.com/express-session
 
-[npm-image]: https://img.shields.io/npm/v/mniam-store.svg
+[npm-image]: https://img.shields.io/npm/v/mniam-store
 [npm-url]: https://npmjs.org/package/mniam-store
 
-[build-url]: https://travis-ci.org/pirxpilot/mniam-store
-[build-image]: https://img.shields.io/travis/pirxpilot/mniam-store.svg
+[build-url]: https://github.com/pirxpilot/mniam-store/actions/workflows/check.yaml
+[build-image]: https://img.shields.io/github/workflow/status/pirxpilot/mniam-store/check
 
-[deps-image]: https://img.shields.io/david/pirxpilot/mniam-store.svg
-[deps-url]: https://david-dm.org/pirxpilot/mniam-store
+[deps-image]: https://img.shields.io/librariesio/release/npm/mniam-store
+[deps-url]: https://libraries.io/npm/mniam-store
 
 [deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/mniam-store.svg
 [deps-dev-url]: https://david-dm.org/pirxpilot/mniam-store?type=dev

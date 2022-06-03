@@ -6,10 +6,7 @@
   "scripts": {
     "test": "make test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:pirxpilot/mniam-store.git"
-  },
+  "repository": "pirxpilot/mniam-store",
   "keywords": [
     "mniam",
     "connect",
