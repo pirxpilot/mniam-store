@@ -16,18 +16,19 @@ describe('MniamStore', function () {
     name: 'sessions'
   });
 
-  beforeEach(function() {
-    return sessions.drop();
+  beforeEach(function () {
+    return db.drop();
   });
 
-  after(function() {
+  after(async function () {
+    await db.drop();
     db.close();
   });
 
   it('should set session data', function (done) {
     const store = new MniamStore({ db });
 
-    store.set(key, value, function(err) {
+    store.set(key, value, function (err) {
       should.not.exist(err);
 
       sessions.findOne({ _id: key }).then(sess => {
@@ -48,7 +49,7 @@ describe('MniamStore', function () {
     const store = new MniamStore({ db });
     let modOrig;
 
-    store.set(key, value, function(err) {
+    store.set(key, value, function (err) {
       should.not.exist(err);
 
       sessions.findOne({ _id: key }).then(sess => {
@@ -56,7 +57,7 @@ describe('MniamStore', function () {
 
         modOrig = sess._mod;
 
-        store.touch(key, null, function(err) {
+        store.touch(key, null, function (err) {
           should.not.exist(err);
 
           sessions.findOne({ _id: key }).then(sess => {
@@ -74,7 +75,7 @@ describe('MniamStore', function () {
   it('should ignore touch to non-existing sessions', function (done) {
     const store = new MniamStore({ db });
 
-    store.touch(key, null, function(err) {
+    store.touch(key, null, function (err) {
       should.not.exist(err);
       sessions.findOne({ _id: key }).then(sess => {
         should.not.exist(sess);
@@ -101,13 +102,13 @@ describe('MniamStore', function () {
   it('should destroy session data', function (done) {
     const store = new MniamStore({ db });
 
-    store.set(key, value, function(err) {
+    store.set(key, value, function (err) {
       should.not.exist(err);
 
       sessions.find().then(all => {
         all.should.have.length(1);
 
-        store.destroy(key, function(err) {
+        store.destroy(key, function (err) {
           should.not.exist(err);
 
           sessions.find().then(all => {
