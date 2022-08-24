@@ -99,6 +99,16 @@ describe('MniamStore', function () {
     }, done);
   });
 
+  it('should return empty when no session found', function (done) {
+    const store = new MniamStore({ db });
+
+    store.get('_not_here', function (err, session) {
+      should.not.exist(err);
+      should.not.exist(session);
+      done();
+    });
+  });
+
   it('should destroy session data', function (done) {
     const store = new MniamStore({ db });
 
