@@ -1,4 +1,9 @@
 
+3.0.1 / 2022-08-24
+==================
+
+ * return empty/null session when no session found
+
 3.0.0 / 2022-06-03
 ==================
 
