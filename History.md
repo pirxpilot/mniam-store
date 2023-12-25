@@ -1,4 +1,11 @@
 
+4.0.0 / 2023-12-25
+==================
+
+ * upgrade mniam to ~4
+ * use @pirxpilot/jshint instead of jshint
+ * use `node:test` instead of `mocha`
+
 3.0.1 / 2022-08-24
 ==================
 
