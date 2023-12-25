@@ -1,10 +1,10 @@
+const { after, describe, beforeEach, it } = require('node:test');
+
 const should = require('should');
 const sessionMiddleware = require('express-session');
 const MniamStore = require('../lib/store')(sessionMiddleware);
 
 const db = require('mniam').db('mongodb://localhost/mniam-store-test');
-
-/*global describe, it, after, beforeEach */
 
 describe('MniamStore', function () {
   const key = 'abcd-efgh';
@@ -22,10 +22,10 @@ describe('MniamStore', function () {
 
   after(async function () {
     await db.drop();
-    db.close();
+    await db.close();
   });
 
-  it('should set session data', function (done) {
+  it('should set session data', function (_, done) {
     const store = new MniamStore({ db });
 
     store.set(key, value, function (err) {
@@ -45,7 +45,7 @@ describe('MniamStore', function () {
     });
   });
 
-  it('should update timestamp when touched', function (done) {
+  it('should update timestamp when touched', function (_, done) {
     const store = new MniamStore({ db });
     let modOrig;
 
@@ -72,7 +72,7 @@ describe('MniamStore', function () {
     });
   });
 
-  it('should ignore touch to non-existing sessions', function (done) {
+  it('should ignore touch to non-existing sessions', function (_, done) {
     const store = new MniamStore({ db });
 
     store.touch(key, null, function (err) {
@@ -84,7 +84,7 @@ describe('MniamStore', function () {
     });
   });
 
-  it('should get session data', function (done) {
+  it('should get session data', function (_, done) {
     const store = new MniamStore({ db });
 
     sessions.insertOne({ _id: key, session: value, }).then(() => {
@@ -99,7 +99,7 @@ describe('MniamStore', function () {
     }, done);
   });
 
-  it('should return empty when no session found', function (done) {
+  it('should return empty when no session found', function (_, done) {
     const store = new MniamStore({ db });
 
     store.get('_not_here', function (err, session) {
@@ -109,7 +109,7 @@ describe('MniamStore', function () {
     });
   });
 
-  it('should destroy session data', function (done) {
+  it('should destroy session data', function (_, done) {
     const store = new MniamStore({ db });
 
     store.set(key, value, function (err) {
