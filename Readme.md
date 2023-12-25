@@ -74,10 +74,8 @@ MIT
 [npm-url]: https://npmjs.org/package/mniam-store
 
 [build-url]: https://github.com/pirxpilot/mniam-store/actions/workflows/check.yaml
-[build-image]: https://img.shields.io/github/workflow/status/pirxpilot/mniam-store/check
+[build-image]: https://img.shields.io/github/actions/workflow/status/pirxpilot/mniam-store/check.yaml?branch=main
 
 [deps-image]: https://img.shields.io/librariesio/release/npm/mniam-store
 [deps-url]: https://libraries.io/npm/mniam-store
 
-[deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/mniam-store.svg
-[deps-dev-url]: https://david-dm.org/pirxpilot/mniam-store?type=dev
