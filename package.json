@@ -22,8 +22,8 @@
     "mniam": "~3"
   },
   "devDependencies": {
+    "@pirxpilot/jshint": "^3.0.1",
     "express-session": "^1.11.2",
-    "jshint": "~2",
     "mniam": "~3",
     "should": "~13"
   },
