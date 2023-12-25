@@ -19,12 +19,12 @@
     "debug": "~4"
   },
   "peerDependencies": {
-    "mniam": "~3"
+    "mniam": "~4"
   },
   "devDependencies": {
     "@pirxpilot/jshint": "^3.0.1",
     "express-session": "^1.11.2",
-    "mniam": "~3",
+    "mniam": "~4",
     "should": "~13"
   },
   "files": [
