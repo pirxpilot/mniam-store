@@ -1,4 +1,11 @@
 
+4.0.1 / 2025-01-04
+==================
+
+ * simplify serializing and de-serializing
+ * fix copying cookie properties when serializing sesssion
+ * fix build status link in Readme
+
 4.0.0 / 2023-12-25
 ==================
 
