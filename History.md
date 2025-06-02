@@ -1,4 +1,10 @@
 
+4.0.2 / 2025-06-01
+==================
+
+ * use `node:assert` instead of `should`
+ * use `biome` as a linter and formatter
+
 4.0.1 / 2025-01-04
 ==================
 
