@@ -87,7 +87,7 @@ describe('MniamStore', function () {
   it('should get session data', function (_, done) {
     const store = new MniamStore({ db });
 
-    sessions.insertOne({ _id: key, session: value, }).then(() => {
+    sessions.insertOne({ _id: key, session: value }).then(() => {
       store.get(key, function (err, session) {
         should.not.exist(err);
 
