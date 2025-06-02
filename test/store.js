@@ -1,6 +1,5 @@
 const { after, describe, beforeEach, it } = require('node:test');
 
-const should = require('should');
 const sessionMiddleware = require('express-session');
 const MniamStore = require('../lib/store')(sessionMiddleware);
 
@@ -25,45 +24,45 @@ describe('MniamStore', function () {
     await db.close();
   });
 
-  it('should set session data', function (_, done) {
+  it('should set session data', function (t, done) {
     const store = new MniamStore({ db });
 
     store.set(key, value, function (err) {
-      should.not.exist(err);
+      t.assert.ifError(err);
 
       sessions.findOne({ _id: key }).then(sess => {
-        should.exist(sess);
+        t.assert.ok(sess);
 
-        sess.should.have.property('_mod');
-        sess._mod.should.be.below(new Date());
+        t.assert.ok('_mod' in sess);
+        t.assert.ok(sess._mod < new Date());
 
-        sess.should.have.property('session');
-        sess.session.should.have.property('user', 'Bob');
+        t.assert.ok('session' in sess);
+        t.assert.equal(sess.session.user, 'Bob');
 
         done();
       }, done);
     });
   });
 
-  it('should update timestamp when touched', function (_, done) {
+  it('should update timestamp when touched', function (t, done) {
     const store = new MniamStore({ db });
     let modOrig;
 
     store.set(key, value, function (err) {
-      should.not.exist(err);
+      t.assert.ifError(err);
 
       sessions.findOne({ _id: key }).then(sess => {
-        should.exist(sess);
+        t.assert.ok(sess);
 
         modOrig = sess._mod;
 
         store.touch(key, null, function (err) {
-          should.not.exist(err);
+          t.assert.ifError(err);
 
           sessions.findOne({ _id: key }).then(sess => {
-            should.exist(sess);
+            t.assert.ok(sess);
 
-            modOrig.should.be.below(sess._mod);
+            t.assert.ok(modOrig < sess._mod);
 
             done(err);
           }, done);
@@ -72,57 +71,57 @@ describe('MniamStore', function () {
     });
   });
 
-  it('should ignore touch to non-existing sessions', function (_, done) {
+  it('should ignore touch to non-existing sessions', function (t, done) {
     const store = new MniamStore({ db });
 
     store.touch(key, null, function (err) {
-      should.not.exist(err);
+      t.assert.ifError(err);
       sessions.findOne({ _id: key }).then(sess => {
-        should.not.exist(sess);
+        t.assert.equal(sess, null);
         done();
       }, done);
     });
   });
 
-  it('should get session data', function (_, done) {
+  it('should get session data', function (t, done) {
     const store = new MniamStore({ db });
 
-    sessions.insertOne({ _id: key, session: value, }).then(() => {
+    sessions.insertOne({ _id: key, session: value }).then(() => {
       store.get(key, function (err, session) {
-        should.not.exist(err);
+        t.assert.ifError(err);
 
-        should.exist(session);
-        session.should.have.property('user', 'Bob');
-        session.should.have.property('cookie');
+        t.assert.ok(session);
+        t.assert.equal(session.user, 'Bob');
+        t.assert.ok('cookie' in session);
         done();
       });
     }, done);
   });
 
-  it('should return empty when no session found', function (_, done) {
+  it('should return empty when no session found', function (t, done) {
     const store = new MniamStore({ db });
 
     store.get('_not_here', function (err, session) {
-      should.not.exist(err);
-      should.not.exist(session);
+      t.assert.ifError(err);
+      t.assert.equal(session, null);
       done();
     });
   });
 
-  it('should destroy session data', function (_, done) {
+  it('should destroy session data', function (t, done) {
     const store = new MniamStore({ db });
 
     store.set(key, value, function (err) {
-      should.not.exist(err);
+      t.assert.ifError(err);
 
       sessions.find().then(all => {
-        all.should.have.length(1);
+        t.assert.equal(all.length, 1);
 
         store.destroy(key, function (err) {
-          should.not.exist(err);
+          t.assert.ifError(err);
 
           sessions.find().then(all => {
-            all.should.have.length(0);
+            t.assert.equal(all.length, 0);
             done();
           }, done);
         });
