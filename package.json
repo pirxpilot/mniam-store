@@ -27,8 +27,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "express-session": "^1.11.2",
-    "mniam": "~4",
-    "should": "~13"
+    "mniam": "~4"
   },
   "files": [
     "index.js",
