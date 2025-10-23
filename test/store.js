@@ -1,9 +1,10 @@
-const { after, describe, beforeEach, it } = require('node:test');
+import { after, beforeEach, describe, it } from 'node:test';
+import sessionMiddleware from 'express-session';
+import * as mniam from 'mniam';
+import makeStore from '../lib/store.js';
 
-const sessionMiddleware = require('express-session');
-const MniamStore = require('../lib/store')(sessionMiddleware);
-
-const db = require('mniam').db('mongodb://localhost/mniam-store-test');
+const MniamStore = makeStore(sessionMiddleware);
+const db = mniam.db('mongodb://localhost/mniam-store-test');
 
 describe('MniamStore', function () {
   const key = 'abcd-efgh';

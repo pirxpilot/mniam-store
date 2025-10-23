@@ -2,7 +2,8 @@
   "name": "mniam-store",
   "version": "4.0.2",
   "description": "session store for connect middleware using mniam mongo access layer",
-  "main": "index.js",
+  "exports": "./lib/store.js",
+  "type": "module",
   "scripts": {
     "test": "make test"
   },
@@ -22,15 +23,14 @@
     "debug": "~4"
   },
   "peerDependencies": {
-    "mniam": "~4"
+    "mniam": "~5"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.7",
     "express-session": "^1.11.2",
-    "mniam": "~4"
+    "mniam": "~5"
   },
   "files": [
-    "index.js",
     "lib"
   ]
 }
