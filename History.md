@@ -1,4 +1,11 @@
 
+5.0.0 / 2025-10-23
+==================
+
+ * transition to ESM format
+ * update github actions
+ * upgrade `biome` to 2.2.7
+
 4.0.2 / 2025-06-01
 ==================
 

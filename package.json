@@ -1,6 +1,6 @@
 {
   "name": "mniam-store",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "description": "session store for connect middleware using mniam mongo access layer",
   "exports": "./lib/store.js",
   "type": "module",
