@@ -27,27 +27,15 @@
       "recommended": true,
       "correctness": {
         "noUndeclaredVariables": "error",
-        "noUnusedVariables": "error"
-      },
-      "complexity": {
-        "noForEach": "off",
-        "useArrowFunction": "off",
-        "useLiteralKeys": "off"
+        "noUnusedVariables": "error",
+        "noUnusedFunctionParameters": "error"
       },
       "style": {
-        "noParameterAssign": "off",
-        "useTemplate": "off",
         "useDefaultParameterLast": "error",
         "useSingleVarDeclarator": "error",
         "noUnusedTemplateLiteral": "error",
         "useNumberNamespace": "error",
         "noUselessElse": "error"
-      },
-      "performance": {
-        "noDelete": "off"
-      },
-      "suspicious": {
-        "noAssignInExpressions": "off"
       }
     }
   }

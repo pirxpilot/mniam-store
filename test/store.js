@@ -6,7 +6,7 @@ import makeStore from '../lib/store.js';
 const MniamStore = makeStore(sessionMiddleware);
 const db = mniam.db('mongodb://localhost/mniam-store-test');
 
-describe('MniamStore', function () {
+describe('MniamStore', () => {
   const key = 'abcd-efgh';
   const value = {
     user: 'Bob',
@@ -16,19 +16,17 @@ describe('MniamStore', function () {
     name: 'sessions'
   });
 
-  beforeEach(function () {
-    return db.drop();
-  });
+  beforeEach(() => db.drop());
 
-  after(async function () {
+  after(async () => {
     await db.drop();
     await db.close();
   });
 
-  it('should set session data', function (t, done) {
+  it('should set session data', (t, done) => {
     const store = new MniamStore({ db });
 
-    store.set(key, value, function (err) {
+    store.set(key, value, err => {
       t.assert.ifError(err);
 
       sessions.findOne({ _id: key }).then(sess => {
@@ -45,11 +43,11 @@ describe('MniamStore', function () {
     });
   });
 
-  it('should update timestamp when touched', function (t, done) {
+  it('should update timestamp when touched', (t, done) => {
     const store = new MniamStore({ db });
     let modOrig;
 
-    store.set(key, value, function (err) {
+    store.set(key, value, err => {
       t.assert.ifError(err);
 
       sessions.findOne({ _id: key }).then(sess => {
@@ -57,7 +55,7 @@ describe('MniamStore', function () {
 
         modOrig = sess._mod;
 
-        store.touch(key, null, function (err) {
+        store.touch(key, null, err => {
           t.assert.ifError(err);
 
           sessions.findOne({ _id: key }).then(sess => {
@@ -72,10 +70,10 @@ describe('MniamStore', function () {
     });
   });
 
-  it('should ignore touch to non-existing sessions', function (t, done) {
+  it('should ignore touch to non-existing sessions', (t, done) => {
     const store = new MniamStore({ db });
 
-    store.touch(key, null, function (err) {
+    store.touch(key, null, err => {
       t.assert.ifError(err);
       sessions.findOne({ _id: key }).then(sess => {
         t.assert.equal(sess, null);
@@ -84,11 +82,11 @@ describe('MniamStore', function () {
     });
   });
 
-  it('should get session data', function (t, done) {
+  it('should get session data', (t, done) => {
     const store = new MniamStore({ db });
 
     sessions.insertOne({ _id: key, session: value }).then(() => {
-      store.get(key, function (err, session) {
+      store.get(key, (err, session) => {
         t.assert.ifError(err);
 
         t.assert.ok(session);
@@ -99,26 +97,26 @@ describe('MniamStore', function () {
     }, done);
   });
 
-  it('should return empty when no session found', function (t, done) {
+  it('should return empty when no session found', (t, done) => {
     const store = new MniamStore({ db });
 
-    store.get('_not_here', function (err, session) {
+    store.get('_not_here', (err, session) => {
       t.assert.ifError(err);
       t.assert.equal(session, null);
       done();
     });
   });
 
-  it('should destroy session data', function (t, done) {
+  it('should destroy session data', (t, done) => {
     const store = new MniamStore({ db });
 
-    store.set(key, value, function (err) {
+    store.set(key, value, err => {
       t.assert.ifError(err);
 
       sessions.find().then(all => {
         t.assert.equal(all.length, 1);
 
-        store.destroy(key, function (err) {
+        store.destroy(key, err => {
           t.assert.ifError(err);
 
           sessions.find().then(all => {
